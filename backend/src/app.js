@@ -8,7 +8,7 @@ import orderRouter from './routes/order.routes.js';
 import cors from 'cors';
 app.use(cors({
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        origin: ['https://full-stack-e-commerce-k455.vercel.app'],  // Or specify the origin like 'http://localhost:5173'
+        origin: ['https://full-stack-e-commerce-k455.vercel.app','http://localhost:8080'],  // Or specify the origin like 'http://localhost:5173'
         credentials: true  // Allow cookies or credentials to be sent
             
 }));
