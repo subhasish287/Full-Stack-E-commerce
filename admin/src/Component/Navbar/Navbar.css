@@ -1,0 +1,18 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 4%;
+}
+.navbar .logo{
+    width: max(10%,80px);
+}
+.navbar button{
+    width: 4rem;
+    background-color: black;
+    height: 2rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

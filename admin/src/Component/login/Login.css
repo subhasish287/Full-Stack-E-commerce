@@ -1,0 +1,35 @@
+.login{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.form{
+    width: 90%;
+    max-width:300px ;
+    background-color: rgb(126, 233, 233);
+    padding: 20px;
+    box-shadow: 0,0,20px,40px;
+    border-radius: .5rem;
+}
+.input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #a9a9a9;
+    border-radius: 1rem;
+}
+.button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    background-color: black;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+}
