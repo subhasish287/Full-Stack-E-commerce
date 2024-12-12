@@ -19,7 +19,9 @@ app.get('/', (req, res) => {
         console.log("hello world");
         res.send("hello world");
 })
-
+app.get("/test", (req, res) => {
+        res.send("Test Working");
+})
 app.listen(8080, () => {
         console.log("Server is running on port 8080");
 })
