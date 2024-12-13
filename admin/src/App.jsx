@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token")? localStorage.getItem("token"):'');
-  const url = "https://fullstack-e-commerce-zriy.onrender.com/";
+  const url = "https://fullstack-e-commerce-zriy.onrender.com";
 
   useEffect(() => {
      localStorage.setItem("token",token);
