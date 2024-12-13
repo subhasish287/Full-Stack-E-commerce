@@ -15,12 +15,9 @@ app.use(cors({
 }));
 connectDb();
 connectCloudinary();
-app.get('/', (req, res) => {
-        console.log("hello world");
-        res.send("hello world");
-})
-app.get("/test", (req, res) => {
-        res.send("Test Working");
+
+app.get("/", (req, res) => {
+        res.send("Api Working");
 })
 app.listen(8080, () => {
         console.log("Server is running on port 8080");
