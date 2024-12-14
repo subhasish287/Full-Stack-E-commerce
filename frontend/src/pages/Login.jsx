@@ -11,6 +11,7 @@ function Login() {
   const [password,setPassword] = useState(null);
   const onSubmitHandler = async(e)=>{
     e.preventDefault();
+    // console.log(backendUrl);
     try {
         if(currentState === 'Sign Up'){
           const response = await axios.post(backendUrl+"/api/v1/users/register",{name,email,password});
@@ -25,9 +26,7 @@ function Login() {
           }
           
         }else{
-          
           const response = await axios.post(backendUrl+"/api/v1/users/login",{email,password});
-          console.log(response);
           if(response.data.success === true){
             setToken(response.data.token);
             setUser(response.data.userData);
@@ -41,7 +40,7 @@ function Login() {
           }
         }
     }catch(error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data.message);
     }
     }
     useEffect(()=>{

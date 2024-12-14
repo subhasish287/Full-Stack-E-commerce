@@ -175,7 +175,7 @@ function Add({ url,token }) {
               required
             >
               <option value="Topwear">Topwear</option>
-              <option value="Buttomwear">Buttomwear</option>
+              <option value="Bottomwear">Bottomwear</option>
               <option value="Winterwear">Winterwear</option>
             </select>
           </div>
