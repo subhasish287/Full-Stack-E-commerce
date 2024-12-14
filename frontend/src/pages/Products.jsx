@@ -143,7 +143,7 @@ function Products() {
           <p onClick={()=>handleDesAndReview('description')} className="border px-5 py-3 text-sm cursor-pointer">Description</p>
           <p onClick={()=>handleDesAndReview('review')}  className="border px-5 py-3 text-sm cursor-pointer"> Reviews</p>
         </div>
-        {handlerevewAndDes === "description" ? <ProductDescription/> : <Review/>}
+        {handlerevewAndDes === "description" ? <ProductDescription/> : <Review productId={productId}/>}
 
         
       </div>

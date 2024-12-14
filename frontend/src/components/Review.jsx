@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
+import { ShopContext } from "../context/ShopContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const Review = () => {
+const Review = ({productId}) => {
+  const{backendUrl,token,user} = useContext(ShopContext) 
   const [rating, setRating] = useState(1);
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState({});
-
-  const handleSubmit = (e) => {
+  const [showAllReviews, setShowAllReviews] = useState([]);
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     // Basic validation
@@ -19,15 +23,66 @@ const Review = () => {
       setErrors(formErrors);
     } else {
       // Handle form submission (e.g., send to API)
-      console.log("Review submitted:", { rating, review });
+      try {
+        console.log(productId,rating,review,backendUrl);
+        
+        const response = await axios.post(backendUrl+"/api/v1/review/add", {productId,rating,comment:review},{headers:{Authorization:`${token}`}})
+        if(response.data.success === true){
+          toast.success(response.data.message);
+          allReviews();
+        }else{
+          toast.error(response.data.message);
+        }
+          
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message)
+      }
     }
   };
+
+  const allReviews = async () => {
+    try {
+      const reviewsCopy = [];
+      const response = await axios.post(backendUrl+"/api/v1/review/list",{productId},{headers:{Authorization:`${token}`}});
+      if (response.data.success === true) {
+        // setShowAllReviews(response.data.reviews);
+        response.data.reviews.forEach((review) => {
+          if(review.productId === productId){
+            reviewsCopy.push(review);
+          }
+        });
+        setShowAllReviews(reviewsCopy);
+        console.log(user);
+        console.log(reviewsCopy);
+        
+        }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message)
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  };
+  
+  // Example Usage
+  // const updatedAt = "2024-12-14T20:17:57.665Z";
+  // console.log(formatDate(updatedAt));
+
+
+  useEffect(() => {
+    allReviews();
+  }, []);
   return (
     <div className="max-w-4xl mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
   <h2 className="text-2xl font-semibold text-gray-800 mb-4">Customer Reviews</h2>
 
   {/* Review Form */}
-  <div className="max-w-lg mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
+  <div className=" my-8 p-6 bg-white shadow-lg rounded-lg">
     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Write a Review</h2>
     <form onSubmit={handleSubmit}>
       {/* Rating Field */}
@@ -82,316 +137,54 @@ const Review = () => {
   {/* Review List with Scrolling */}
   <div className="space-y-4 max-h-[400px] overflow-y-auto"
   style={{ maxHeight: '400px', overflowY: 'auto' }}> {/* Apply scroll here */}
-    {/* Single Review */}
-    <div className="flex gap-4 border-b pb-4">
-      {/* Avatar */}
-      <div className="w-12 h-12 rounded-full overflow-hidden">
-        <img
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt="User"
-          className="w-full h-full object-cover"
-        />
-      </div>
 
-      {/* Review Content */}
-      <div className="flex-1">
-        <div className="flex items-center justify-between">
-          {/* User Name and Rating */}
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-gray-700">John Doe</span>
-            <div className="flex text-yellow-400">
-              {/* Stars for rating */}
-              {[...Array(5)].map((_, index) => (
-                <svg
-                  key={index}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill={index < 4 ? "currentColor" : "none"}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 17.27l6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73-1.64 7.03L12 17.27z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ))}
-            </div>
-          </div>
-          {/* Date */}
-          <span className="text-sm text-gray-500">2 days ago</span>
-        </div>
-        <p className="text-gray-700 mt-2">
-          This product is great! I have been using it for a week now and it works perfectly. Worth every penny!
-        </p>
-      </div>
-    </div>
-    <div className="flex gap-4 border-b pb-4">
-      {/* Avatar */}
-      <div className="w-12 h-12 rounded-full overflow-hidden">
-        <img
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt="User"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Review Content */}
-      <div className="flex-1">
-        <div className="flex items-center justify-between">
-          {/* User Name and Rating */}
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-gray-700">John Doe</span>
-            <div className="flex text-yellow-400">
-              {/* Stars for rating */}
-              {[...Array(5)].map((_, index) => (
-                <svg
-                  key={index}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill={index < 4 ? "currentColor" : "none"}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 17.27l6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73-1.64 7.03L12 17.27z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ))}
-            </div>
-          </div>
-          {/* Date */}
-          <span className="text-sm text-gray-500">2 days ago</span>
-        </div>
-        <p className="text-gray-700 mt-2">
-          This product is great! I have been using it for a week now and it works perfectly. Worth every penny!
-        </p>
-      </div>
-    </div>
-    <div className="flex gap-4 border-b pb-4">
-      {/* Avatar */}
-      <div className="w-12 h-12 rounded-full overflow-hidden">
-        <img
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt="User"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Review Content */}
-      <div className="flex-1">
-        <div className="flex items-center justify-between">
-          {/* User Name and Rating */}
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-gray-700">John Doe</span>
-            <div className="flex text-yellow-400">
-              {/* Stars for rating */}
-              {[...Array(5)].map((_, index) => (
-                <svg
-                  key={index}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill={index < 4 ? "currentColor" : "none"}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 17.27l6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73-1.64 7.03L12 17.27z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ))}
-            </div>
-          </div>
-          {/* Date */}
-          <span className="text-sm text-gray-500">2 days ago</span>
-        </div>
-        <p className="text-gray-700 mt-2">
-          This product is great! I have been using it for a week now and it works perfectly. Worth every penny!
-        </p>
-      </div>
-    </div>
-    <div className="flex gap-4 border-b pb-4">
-      {/* Avatar */}
-      <div className="w-12 h-12 rounded-full overflow-hidden">
-        <img
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt="User"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Review Content */}
-      <div className="flex-1">
-        <div className="flex items-center justify-between">
-          {/* User Name and Rating */}
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-gray-700">John Doe</span>
-            <div className="flex text-yellow-400">
-              {/* Stars for rating */}
-              {[...Array(5)].map((_, index) => (
-                <svg
-                  key={index}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill={index < 4 ? "currentColor" : "none"}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 17.27l6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73-1.64 7.03L12 17.27z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ))}
-            </div>
-          </div>
-          {/* Date */}
-          <span className="text-sm text-gray-500">2 days ago</span>
-        </div>
-        <p className="text-gray-700 mt-2">
-          This product is great! I have been using it for a week now and it works perfectly. Worth every penny!
-        </p>
-      </div>
-    </div>
-    <div className="flex gap-4 border-b pb-4">
-      {/* Avatar */}
-      <div className="w-12 h-12 rounded-full overflow-hidden">
-        <img
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt="User"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Review Content */}
-      <div className="flex-1">
-        <div className="flex items-center justify-between">
-          {/* User Name and Rating */}
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-gray-700">John Doe</span>
-            <div className="flex text-yellow-400">
-              {/* Stars for rating */}
-              {[...Array(5)].map((_, index) => (
-                <svg
-                  key={index}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill={index < 4 ? "currentColor" : "none"}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 17.27l6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73-1.64 7.03L12 17.27z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ))}
-            </div>
-          </div>
-          {/* Date */}
-          <span className="text-sm text-gray-500">2 days ago</span>
-        </div>
-        <p className="text-gray-700 mt-2">
-          This product is great! I have been using it for a week now and it works perfectly. Worth every penny!
-        </p>
-      </div>
-    </div>
-    <div className="flex gap-4 border-b pb-4">
-      {/* Avatar */}
-      <div className="w-12 h-12 rounded-full overflow-hidden">
-        <img
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt="User"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Review Content */}
-      <div className="flex-1">
-        <div className="flex items-center justify-between">
-          {/* User Name and Rating */}
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-gray-700">John Doe</span>
-            <div className="flex text-yellow-400">
-              {/* Stars for rating */}
-              {[...Array(5)].map((_, index) => (
-                <svg
-                  key={index}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill={index < 4 ? "currentColor" : "none"}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 17.27l6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73-1.64 7.03L12 17.27z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ))}
-            </div>
-          </div>
-          {/* Date */}
-          <span className="text-sm text-gray-500">2 days ago</span>
-        </div>
-        <p className="text-gray-700 mt-2">
-          This product is great! I have been using it for a week now and it works perfectly. Worth every penny!
-        </p>
-      </div>
-    </div>
-    <div className="flex gap-4 border-b pb-4">
-      {/* Avatar */}
-      <div className="w-12 h-12 rounded-full overflow-hidden">
-        <img
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt="User"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Review Content */}
-      <div className="flex-1">
-        <div className="flex items-center justify-between">
-          {/* User Name and Rating */}
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-gray-700">John Doe</span>
-            <div className="flex text-yellow-400">
-              {/* Stars for rating */}
-              {[...Array(5)].map((_, index) => (
-                <svg
-                  key={index}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill={index < 4 ? "currentColor" : "none"}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12 17.27l6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73-1.64 7.03L12 17.27z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ))}
-            </div>
-          </div>
-          {/* Date */}
-          <span className="text-sm text-gray-500">2 days ago</span>
-        </div>
-        <p className="text-gray-700 mt-2">
-          This product is great! I have been using it for a week now and it works perfectly. Worth every penny!
-        </p>
-      </div>
+{showAllReviews.map((review, index) => (
+  <div key={index} className="flex gap-4 border-b pb-4">
+    {/* Avatar */}
+    <div className="w-12 h-12 rounded-full overflow-hidden">
+      <img
+        src={review.userAvatar || "https://via.placeholder.com/150"} // Placeholder image
+        alt={review.userName || "Anonymous"}
+        className="w-full h-full object-cover"
+      />
     </div>
 
+    {/* Review Content */}
+    <div className="flex-1">
+      <div className="flex items-center justify-between">
+        {/* User Name and Rating */}
+        <div className="flex items-center gap-2">
+          <span className="font-semibold text-gray-700">{review.user.name || "Anonymous"}</span>
+          <div className="flex text-yellow-400">
+            {/* Dynamically render stars based on review.rating */}
+            {[...Array(5)].map((_, starIndex) => (
+              <svg
+                key={starIndex}
+                xmlns="http://www.w3.org/2000/svg"
+                fill={starIndex < review.rating ? "currentColor" : "none"}
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12 17.27l6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73-1.64 7.03L12 17.27z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            ))}
+          </div>
+        </div>
+        {/* Date */}
+        <span className="text-sm text-gray-500">{formatDate(review.updatedAt) || "Unknown Date"}</span>
+      </div>
+      <p className="text-gray-700 mt-2">{review.comment}</p>
+    </div>
+  </div>
+))}
+
+
+    
     {/* Repeat for more reviews */}
     <div className="flex gap-4 border-b pb-4">
       <div className="w-12 h-12 rounded-full overflow-hidden">
