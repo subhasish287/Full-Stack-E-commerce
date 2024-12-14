@@ -8,7 +8,7 @@ import Orders from "./pages/Orders/Orders";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Login from "./Component/Login/Login";
+import Login from "./Component/login/Login";
 import { useEffect, useState } from "react";
 
 function App() {
