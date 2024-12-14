@@ -7,12 +7,16 @@ import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+<<<<<<< HEAD
 import Login from "./Component/Login/Login";
+=======
+import Login from "./Component/login/Login";
+>>>>>>> 42f4814d35a6c72174aec2d55a8bc7ca4a786315
 import { useEffect, useState } from "react";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token")? localStorage.getItem("token"):'');
-  const url = "http://localhost:8080";
+  const url = "https://fullstack-e-commerce-zriy.onrender.com";
 
   useEffect(() => {
      localStorage.setItem("token",token);
