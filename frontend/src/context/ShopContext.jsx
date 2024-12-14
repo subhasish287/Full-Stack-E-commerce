@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-// import { products } from "../assets/frontend_assets/assets";
+import { staticProducts } from "../assets/frontend_assets/assets";
 import { toast } from "react-toastify";
 export const ShopContext = createContext();
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,13 @@ const ShopContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+
+  const isBackendnotWorking = () => {
+    if(products.length === 0){
+      setProducts(staticProducts);
+    }
+  };
 
   const addToCart = async (itemId, size, quantity) => {
     if (!size) {
@@ -159,6 +166,7 @@ const ShopContextProvider = (props) => {
   };
   useEffect(() => {
     getProducts();
+    isBackendnotWorking();
   }, []);
 
   useEffect(() => {
