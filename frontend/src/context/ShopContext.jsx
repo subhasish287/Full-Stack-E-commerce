@@ -82,10 +82,7 @@ const ShopContextProvider = (props) => {
     if(quantity !== 0){
       quantity = cartData[itemId][size] + quantity; 
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 42f4814d35a6c72174aec2d55a8bc7ca4a786315
     cartData[itemId][size] = quantity;
     setCartItems(cartData);
     
