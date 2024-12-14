@@ -25,7 +25,7 @@ function Products() {
   useEffect(()=>{
     fetchProductData();
     
-  },[productData,products])
+  },[productData,products,productId])
 
 
 return productData? (
@@ -90,7 +90,7 @@ return productData? (
           </div>
         </div>
         {/*---------------- display releted products ------------*/}
-        <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
+        <RelatedProducts category={productData.category} subCategory={productData.subCategory} productId={productId}/>
     </div>
   ): <div className='opacity-0'></div>
 }
