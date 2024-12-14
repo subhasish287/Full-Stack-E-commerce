@@ -17,8 +17,7 @@ const ShopContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  const addToCart = async (itemId, size) => {
-    console.log(itemId, size);
+  const addToCart = async (itemId, size, quantity) => {
     if (!size) {
       toast.error("Select Product Size");
       return;
@@ -28,13 +27,13 @@ const ShopContextProvider = (props) => {
 
     if (cartData[itemId]) {
       if (cartData[itemId][size]) {
-        cartData[itemId][size] += 1;
+        cartData[itemId][size] += quantity;
       } else {
-        cartData[itemId][size] = 1;
+        cartData[itemId][size] = quantity;
       }
     } else {
       cartData[itemId] = {};
-      cartData[itemId][size] = 1;
+      cartData[itemId][size] = quantity;
     }
     setCartItems(cartData);
 
@@ -44,7 +43,8 @@ const ShopContextProvider = (props) => {
             backendUrl + "/api/v1/carts/add", 
             {
               itemId: itemId,  // The item ID you want to add to the cart
-              size: size       // The size of the item
+              size: size,       // The size of the item
+              quantity: quantity
             },
             {
               headers: { Authorization: ` ${token}`  }  // Authorization header with Bearer token
