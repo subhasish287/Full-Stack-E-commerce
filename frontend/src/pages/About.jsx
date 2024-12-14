@@ -60,7 +60,7 @@ function About() {
             <p className='text-gray-700'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates sunt consectetur qui dolorem, quasi minima repudiandae molestiae itaque blanditiis sequi?</p>
         </div>
       </div>
-      <NewsLatterBox/>
+      {/* <NewsLatterBox/> */}
     </div>
   )
 }
