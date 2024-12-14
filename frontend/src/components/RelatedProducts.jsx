@@ -15,13 +15,10 @@ function RelatedProducts({category,subCategory,productId}) {
 
         productsCopy = productsCopy.filter((item)=> item.category === category);
         productsCopy = productsCopy.filter((item)=> item.subCategory === subCategory);
-<<<<<<< HEAD
         productsCopy = productsCopy.filter((item)=> item._id !== productId);
-=======
+
          productsCopy = productsCopy.filter((item)=> item._id !== productId);
->>>>>>> 42f4814d35a6c72174aec2d55a8bc7ca4a786315
-        setRelated(productsCopy.slice(0,5));
-        
+        setRelated(productsCopy.slice(0,5));        
     }
  },[products])
  return (
