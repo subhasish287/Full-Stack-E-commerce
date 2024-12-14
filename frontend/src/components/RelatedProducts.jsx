@@ -5,7 +5,7 @@ import ProductItem from './ProductItem'
 
 
 
-function RelatedProducts({category,subCategory}) {
+function RelatedProducts({category,subCategory,productId}) {
  const{products} = useContext(ShopContext);
  const [related, setRelated] = useState([]); 
 
@@ -15,6 +15,7 @@ function RelatedProducts({category,subCategory}) {
 
         productsCopy = productsCopy.filter((item)=> item.category === category);
         productsCopy = productsCopy.filter((item)=> item.subCategory === subCategory);
+         productsCopy = productsCopy.filter((item)=> item._id !== productId);
         setRelated(productsCopy.slice(0,5));
         
     }
