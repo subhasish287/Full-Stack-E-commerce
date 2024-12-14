@@ -17,7 +17,6 @@ function App() {
 
   useEffect(() => {
      localStorage.setItem("token",token);
-    
   }, [token]);
   return (
     <div>
