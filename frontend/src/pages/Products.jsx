@@ -7,6 +7,7 @@ import Review from "../components/Review";
 import ProductDescription from "../components/ProductDescription";
 
 function Products() {
+  
   const [productData, setProductData] = useState(false);
   const { products, currency, addToCart,showSearch,navigate } = useContext(ShopContext);
   const { productId } = useParams();
@@ -34,7 +35,7 @@ function Products() {
 
   const fetchProductData = async () => {
     products.filter((item) => {
-      if (item._id == productId) {
+      if (item._id === productId) {
         setProductData(item);
         setImage(item.image[0]);
         return null;

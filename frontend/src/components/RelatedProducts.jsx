@@ -5,7 +5,7 @@ import ProductItem from './ProductItem'
 
 
 
-function RelatedProducts({category,subCategory,productId}) {
+function RelatedProducts({category,subCategory,productId}) {    
  const{products} = useContext(ShopContext);
  const [related, setRelated] = useState([]); 
 
@@ -18,9 +18,14 @@ function RelatedProducts({category,subCategory,productId}) {
         productsCopy = productsCopy.filter((item)=> item._id !== productId);
 
          productsCopy = productsCopy.filter((item)=> item._id !== productId);
-        setRelated(productsCopy.slice(0,5));        
+        setRelated(productsCopy);        
     }
- },[products])
+ },[products,category,subCategory,productId])
+
+ // Scroll to top when productId changes
+ useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [productId]);
  return (
     <div className='my-24'>
         <div className='text-center text-3xl py-2'>
