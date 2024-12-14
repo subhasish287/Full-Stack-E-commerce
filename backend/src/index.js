@@ -7,7 +7,6 @@ import cors from 'cors';
 
 
 dotenv.config();
-<<<<<<< HEAD
 // app.use(cors({
 //         methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //         origin: ['https://full-stack-e-commerce-frontend-iota.vercel.app'],  // Or specify the origin like 'http://localhost:5173'
@@ -24,7 +23,7 @@ app.get("/test", (req, res) => {
 
 app.listen(process.env.PORT, () => {
         console.log("Server is running on port 8080");
-=======
+})
 app.use(cors({
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         origin: ['https://full-stack-e-commerce-k455.vercel.app'],  // Or specify the origin like 'http://localhost:5173'
@@ -39,6 +38,5 @@ app.get("/", (req, res) => {
 })
 app.listen(process.env.PORT || 3000, () => {
         console.log("Server is running on port ",(process.env.PORT || 3000));
->>>>>>> 42f4814d35a6c72174aec2d55a8bc7ca4a786315
 })
 
