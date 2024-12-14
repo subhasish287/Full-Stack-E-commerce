@@ -22,8 +22,8 @@ function Footer() {
         <div>
             <p className='text-xl font-medium mb-5'>Get In Touch</p>
             <ul className='flex flex-col gap-1 text-gray-600'>
-                <li>+ 122323434</li>
-                <li>contact@foreever.com</li>
+                <li>Tel:(415) 555-0123</li>
+                <li>Email:admin@forever.com</li>
             </ul>
         </div>
 

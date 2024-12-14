@@ -111,8 +111,6 @@ const allOrders = async (req, res) => {
         return res.status(404).json({ message: 'No orders found' });
       }
       
-      console.log("dxcfvghbjkl");
-      
       // Send orders as the response
       return res.status(200).json({success: true, orders});
     } catch (err) {
@@ -133,11 +131,14 @@ const userOrder = async (req, res) => {
 
 //update order status from admin panel
 const updateStatus = async (req, res) => {
+        
     try{
         const { orderId, status } = req.body;
         const order = await Order.findById(orderId);
         // Return an error message if something goes wrong
-        res.status(500).json({ success: false, message: error.message });
+        if (!order) {
+            return res.status(404).json({ success: false, message: "Order not found" });
+        }
         order.status = status;
         await order.save();
         res.status(200).json({ success: true, message: "Order updated successfully" });

@@ -7,7 +7,7 @@ import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Login from "./Component/login/login";
+import Login from "./Component/Login/Login";
 import { useEffect, useState } from "react";
 
 function App() {

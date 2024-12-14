@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import './login.css'
+import './Login.css'
 import axios from 'axios';
 import {toast} from 'react-toastify'
 
@@ -29,9 +29,8 @@ function Login({url, setToken}) {
         <input type="email"
          onChange={(e)=>setEmail(e.target.value)}
          placeholder='Email'
-         className='w-full px-3 py-2 border border-gray-800 '
+         className='w-full px-3 py-2 border border-gray-800 input'
          required
-
          />
         <input type="password"
          onChange={(e)=>setPassword(e.target.value)}

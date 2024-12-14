@@ -35,6 +35,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/product/:productId" element={<Products />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/login" element={<Login />} />
         {token && (
           <>
           <Route path="/cart" element={<Cart />} />
@@ -43,7 +44,7 @@ function App() {
           <Route path="/verify" element={<Verify />} />
           </>
         )}
-        <Route path="/login" element={<Login />} />
+        <Route path="/*" element={<Login />} />
       </Routes>
 
       <Footer />

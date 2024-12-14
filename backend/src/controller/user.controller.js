@@ -31,7 +31,7 @@ const register = async(req, res) => {
     } catch (error) {
         return res.status(500).json({success: false,message: error.message});
     }
-  }
+  };
 
   const login = async(req, res) => {
     
@@ -77,8 +77,6 @@ const adminUser = async(req, res) => {
    try {
     const {email,password} = req.body;
     
-    console.log(email,password);
-    
     if(!email || !password){
         return res.status(400).json({success: false,message: 'All fields are required'});
     }
@@ -96,6 +94,7 @@ const adminUser = async(req, res) => {
     res.status(500).json({success: false, message: error.message});
    }
 };
+
 const adminLogout = async(req, res) => {
     return res
             .status(200)

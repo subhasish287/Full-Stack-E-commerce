@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Title from '../components/Title'
 import {assets} from '../assets/frontend_assets/assets'
 import NewsLatterBox from '../components/NewsLatterBox'
+import { ShopContext } from '../context/ShopContext'
 function About() {
+  const{showSearch,navigate}=useContext(ShopContext)
+  if(showSearch){
+    navigate("/collections")
+  }
   return (
     <div>
 
@@ -10,6 +15,24 @@ function About() {
         <Title text1={'About'} text2={'Us'}/>
       </div>
 
+      <div className='my-10 flex flex-col md:flex-row gap-16'>
+        <img className='w-full md:max-w-[450px]' src={assets.about_img} alt="" />
+        <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam quis iste sunt architecto aut nulla molestiae ipsum maxime accusamus temporibus?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto impedit perferendis sequi aperiam pariatur numquam velit ea, ducimus eaque fugiat, dolor repellat eligendi aliquid culpa cum vel provident, ut deserunt.</p>
+            <b className='text-gray-800'>Our Mission</b>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum debitis minus ex! Eligendi, facilis. Quam perferendis temporibus tempora quod? Magni.</p>
+        </div>
+      </div>
+      <div className='my-10 flex flex-col md:flex-row gap-16'>
+        <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam quis iste sunt architecto aut nulla molestiae ipsum maxime accusamus temporibus?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto impedit perferendis sequi aperiam pariatur numquam velit ea, ducimus eaque fugiat, dolor repellat eligendi aliquid culpa cum vel provident, ut deserunt.</p>
+            <b className='text-gray-800'>Our Mission</b>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum debitis minus ex! Eligendi, facilis. Quam perferendis temporibus tempora quod? Magni.</p>
+        </div>
+        <img className='w-full md:max-w-[450px]' src={assets.contact_img} alt="" />
+      </div>
       <div className='my-10 flex flex-col md:flex-row gap-16'>
         <img className='w-full md:max-w-[450px]' src={assets.about_img} alt="" />
         <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>

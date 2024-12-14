@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Title from '../components/Title'
 import { assets } from '../assets/frontend_assets/assets'
 import NewsLatterBox from '../components/NewsLatterBox'
+import { ShopContext } from '../context/ShopContext'
 
 function Contact() {
+  const{showSearch,navigate}=useContext(ShopContext)
+    if(showSearch){
+      navigate("/collections")
+    }
   return (
     <div>
       

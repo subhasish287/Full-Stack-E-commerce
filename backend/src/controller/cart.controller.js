@@ -3,19 +3,19 @@ import User from "../model/user.model.js";
 //add to cart
 const addToCart = async(req, res) => {
     try {
-        const {userId, itemId,size} = req.body;
+        const {userId, itemId,size, quantity} = req.body;
         
         const userData = await User.findById(userId);
         let cartData = userData.cartData;
         if(cartData[itemId]) {
             if(cartData[itemId][size]) {                
-                cartData[itemId][size] += 1;
+                cartData[itemId][size] += quantity;
             } else {
-                cartData[itemId][size] = 1;
+                cartData[itemId][size] = quantity;
             }
         } else {
             cartData[itemId] = {};
-            cartData[itemId][size] = 1;
+            cartData[itemId][size] = quantity;
         }
         await User.findByIdAndUpdate(userId, {cartData});
         res.status(200).json({success: true, message: "added to cart "});

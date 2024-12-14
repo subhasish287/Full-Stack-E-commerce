@@ -18,6 +18,8 @@ function Cart() {
       toast.error('Cart is empty');
     }
   }
+  
+
   useEffect(()=>{
     if(products.length>0){
       const tempData = [];
@@ -35,7 +37,7 @@ function Cart() {
     setCardData(tempData);
     }
 
-  },[cartItems,products])
+  },[cartItems,products,updateQuantity])
   return (
     <div className='border-t pt-14'>
 
@@ -61,9 +63,16 @@ function Cart() {
                         </div>
                       </div>
                   </div>
+                  <div className='flex items-center '>
                   <input onChange={(e)=>e.target.value === '' || e.target.value === '0'? null : updateQuantity(item._id, item.size,Number(e.target.value))
 
-                  } className='border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1' type="number" min={1} defaultValue={item.quantity} />
+                  } className='max-w-10 sm:max-w-20 px-1 sm:px-2 py-1 relative' type="number" min={1} value={item.quantity} />
+                  <div className='border rounded-full'>
+                  <button onClick={()=>updateQuantity(item._id, item.size, 1)} className='w-5 font-bold text-2xl text-lime-500 block cursor-pointer hover:text-lime-600'>+</button>
+                  <button onClick={()=>updateQuantity(item._id, item.size, -1)} className=' w-5 font-bold text-2xl text-red-500 block cursor-pointer hover:text-red-900'>-</button>
+                  </div>
+                  
+                  </div>
                   <img onClick={()=>updateQuantity(item._id, item.size, 0)} className='w-4 m-4 cursor-pointer' src={assets.bin_icon} alt="" />
               </div>
             )
