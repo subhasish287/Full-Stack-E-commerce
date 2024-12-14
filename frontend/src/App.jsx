@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ShopContext } from "./context/ShopContext";
 import ProfilePage from "./pages/Profile";
 import Verify from "./pages/Verify";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 // import Login from "./pages/Login"
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path="/verify" element={<Verify />} />
           </>
         )}
+        <Route path="/pivacy-policy" element={<PrivacyPolicy />} />
         <Route path="/*" element={<Login />} />
       </Routes>
 
