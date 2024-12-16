@@ -12,22 +12,15 @@ function Orders({url,token}) {
     }
     try {
       let response = await axios.post(url+"/api/v1/orders/list",{},{headers:{Authorization:`${token}`}});
-      if(response.data.success === true){
-        console.log(response.data.orders);
-        
+      if(response.data.success === true){  
         setOrders(response.data.orders);
       }else{
         toast.error(response.data.message);
       }
       
     } catch (error) {
-      console.log("bal");
       toast.error(error.message);
-      
-    }
-    
-    
-    
+    }  
   }
 
   const statusHandler = async(event,orderId)=>{
@@ -42,9 +35,7 @@ function Orders({url,token}) {
       }else{
         toast.error(response.data.message);
       }
-    }catch(error){
-      console.log(error);
-      
+    }catch(error){  
       toast.error(error.message);
     }
   }
