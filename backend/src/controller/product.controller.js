@@ -100,7 +100,6 @@ const updateProduct = async(req, res) => {
       }
 
         if(imagesurl.length !== 0) product.image.concat(imagesurl);
-        product.image = imagesurl;
         product.name = req.body.name;
         product.description = req.body.description;
         product.price = req.body.price;
