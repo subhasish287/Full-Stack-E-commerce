@@ -36,6 +36,7 @@ function Products() {
   const fetchProductData = async () => {
     products.filter((item) => {
       if (item._id === productId) {
+        console.log(item);
         setProductData(item);
         setImage(item.image[0]);
         return null;
@@ -92,13 +93,13 @@ function Products() {
             <div className="flex gap-2">
               {productData.sizes.map((item, idx) => (
                 <button
-                  onClick={() => setSize(item)}
+                  onClick={() => setSize(item.size)}
                   className={`border py-2 px-4 bg-gray-100 ${
-                    item === size ? "border-orange-500" : ""
+                    item.size === size ? "border-orange-500" : ""
                   }`}
                   key={idx}
                 >
-                  {item}
+                  {item.size}
                 </button>
               ))}
             </div>

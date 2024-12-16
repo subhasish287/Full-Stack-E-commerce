@@ -60,15 +60,20 @@ function PlaceOrder() {
       const orderItems = findOrdersProduct();
       const totalAmount = getCartAmount() + delivery_fee;
       if (method === "cod") {
+        
         const response = await axios.post(
           `${backendUrl}/api/v1/orders/place`,
           { address, products: orderItems, totalAmount },
           { headers: { Authorization: `${token}` } }
         );
+        
         if (response.data.success === true) {
           toast.success(response.data.message);
           setCartItems({});
           navigate("/orders");
+        }else{
+          
+          toast.error(response.data.message);
         }
       } else if (method === "stripe") {
         const response = await axios.post(
@@ -88,6 +93,8 @@ function PlaceOrder() {
         }
       }
     } catch (error) {
+      console.log(error);
+      
       toast.error(error.message);
     }
   };

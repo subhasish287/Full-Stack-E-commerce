@@ -29,6 +29,18 @@ const ShopContextProvider = (props) => {
       toast.error("Select Product Size");
       return;
     }
+    let isValid =false;
+    const product = products.find((item) => item._id === itemId);
+    product.sizes.map((item) => {
+      if (item.size === size) {
+        if (item.quantity < quantity) {
+          toast.error("Out of Stock");
+          isValid = true;
+          return;
+        }
+      }
+    })
+    if(isValid) return;
 
     let cartData = structuredClone(cartItems);
 
@@ -58,7 +70,7 @@ const ShopContextProvider = (props) => {
             }
           );
           if(res.data.success === true){
-            toast.success(res.data.message);
+            toast.success(res.data.message+" bal");
           }
       } catch (error) {
         console.log(error);
@@ -89,6 +101,19 @@ const ShopContextProvider = (props) => {
     if(quantity !== 0){
       quantity = cartData[itemId][size] + quantity; 
     }
+    
+    // let isValid =false;
+    // const product = products.find((item) => item._id === itemId);
+    // product.sizes.map((item) => {
+    //   if (item.size === size) {
+    //     if (item.quantity < quantity) {
+    //       toast.error("Out of Stock");
+    //       isValid = true;
+    //       return;
+    //     }
+    //   }
+    // })
+    // if(isValid) return;
 
     cartData[itemId][size] = quantity;
     setCartItems(cartData);
@@ -118,9 +143,10 @@ const ShopContextProvider = (props) => {
 
   let getCartAmount = () => {
     let totalAmount = 0;
-
+    
     for (const items in cartItems) {
       let itemInfo = products.find((product) => product._id === items);
+      
       for (const item in cartItems[items]) {
         try {
           if (cartItems[items][item] > 0) {

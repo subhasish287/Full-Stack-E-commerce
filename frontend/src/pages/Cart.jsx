@@ -10,7 +10,7 @@ function Cart() {
 
   const {products,currency,cartItems, updateQuantity,navigate} = useContext(ShopContext)
   const [cartData, setCardData] = useState([]);
-
+  // let productData;
   const navigatePlaceOrder = () => {
     if(cartData.length > 0){
       navigate('/place-order')
@@ -34,6 +34,7 @@ function Cart() {
         }
       }
     }
+    
     setCardData(tempData);
     }
 
@@ -49,7 +50,7 @@ function Cart() {
         {
           cartData.map((item, idx)=>{
             
-            const productData = products.find((product)=> product._id === item._id)
+           const productData = products.find((product)=> product._id === item._id)
 
             return(
               <div key={idx} className='py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_2fr_0.5fr] items-center gap-4'>

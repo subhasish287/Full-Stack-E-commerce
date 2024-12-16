@@ -32,7 +32,7 @@ function Collection() {
 
   const applyFilter = ()=>{
     let productsCopy = products.slice();
-
+    
     if(showSearch && search){
       productsCopy = productsCopy.filter(item=>item.name.toLowerCase().includes(search.toLowerCase()))
     }
@@ -51,7 +51,7 @@ function Collection() {
 
   const sortProduct = ()=>{
     let fpCopy = filterProducts.slice();
-
+    
     switch(sortType){
       case 'low-high':
         setFilterProducts(fpCopy.sort((a,b)=>(a.price - b.price)));

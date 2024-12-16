@@ -13,6 +13,8 @@ function Orders({url,token}) {
     try {
       let response = await axios.post(url+"/api/v1/orders/list",{},{headers:{Authorization:`${token}`}});
       if(response.data.success === true){
+        console.log(response.data.orders);
+        
         setOrders(response.data.orders);
       }else{
         toast.error(response.data.message);
@@ -84,6 +86,10 @@ function Orders({url,token}) {
 
         {/* Display order details */}
         <p>Items: {order.products.length}</p>
+        {order.products.map((product,idx)=>(
+          <p key={idx}>{product.size} x {product.quantity}</p>
+        ))}
+        
         <p>${order.totalAmount}</p>
 
         {/* Status dropdown to change order status */}
