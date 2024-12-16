@@ -9,13 +9,11 @@ function List({ url, token }) {
   const [updateItem, setUpdateItem] = useState(null);
 
   const [update, setUpdate] = useState(false);
-  console.log(update);
   const fetchList = async () => {
     try {
       const response = await axios.get(`${url}/api/v1/products/list`);
       if (response.data.success) {
         setList(response.data.items);
-        console.log(response.data.items);
       } else {
         toast.error("Error fetching product list.");
       }
