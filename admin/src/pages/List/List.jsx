@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Update from "../Update/update";
+import Update from "../Update/Update";
 
 function List({ url, token }) {
   const [list, setList] = useState([]);
