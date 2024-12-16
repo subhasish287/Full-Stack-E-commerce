@@ -6,10 +6,10 @@ import { assets } from "../../assets/admin_assets/assets";
 
 const Update = ({ url, token, item, setUpdate, fetchList }) => {
 
-  const [image1, setImage1] = useState(null);
-  const [image2, setImage2] = useState(null);
-  const [image3, setImage3] = useState(null);
-  const [image4, setImage4] = useState(null);
+  // const [image1, setImage1] = useState(null);
+  // const [image2, setImage2] = useState(null);
+  // const [image3, setImage3] = useState(null);
+  // const [image4, setImage4] = useState(null);
   const [sizes, setSizes] = useState(item.sizes);
   const [bestseller, setBestseller] = useState(item.bestseller);
   console.log(item);
@@ -21,6 +21,7 @@ const Update = ({ url, token, item, setUpdate, fetchList }) => {
     category: item.category,
     subCategory: item.subCategory,
   });
+  
   
   
   const onChangeHandler = (event) => {
@@ -47,11 +48,12 @@ const Update = ({ url, token, item, setUpdate, fetchList }) => {
     formData.append("subCategory", data.subCategory);
     formData.append("bestseller", bestseller);
     formData.append("sizes", JSON.stringify(sizes));
-    if (image1) formData.append("image1", image1);
-    if (image2) formData.append("image2", image2);
-    if (image3) formData.append("image3", image3);
-    if (image4) formData.append("image4", image4);
-
+    // if (image1) formData.append("image1", image1);
+    // if (image2) formData.append("image2", image2);
+    // if (image3) formData.append("image3", image3);
+    // if (image4) formData.append("image4", image4);
+    
+    
     try {
       console.log("ok");
       
@@ -102,11 +104,12 @@ const Update = ({ url, token, item, setUpdate, fetchList }) => {
           <form onSubmit={onSubmitHandler} className="flex-col">
             <div className="add-img-upload flex-col ">
               <p>Upload Image</p>
-              <div className="all-img">
+              {/* <div className="all-img">
                 <label htmlFor="image1">
+                  
                   <img
                     src={
-                      image1 ? URL.createObjectURL(image1) : assets.upload_area
+                      image1 ? URL.createObjectURL(image1) : assets.add_icon
                     }
                     alt="Upload preview"
                   />
@@ -159,7 +162,7 @@ const Update = ({ url, token, item, setUpdate, fetchList }) => {
                   id="image4"
                   style={{ opacity: 0, position: "absolute", zIndex: -1 }}
                 />
-              </div>
+              </div> */}
             </div>
 
             <div className="add-product-name flex-col">

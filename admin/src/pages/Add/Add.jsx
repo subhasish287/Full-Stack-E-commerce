@@ -54,7 +54,6 @@ function Add({ url, token }) {
     if (image4) formData.append("image4", image4);
 
     try {
-      console.log("ok");
       
       const response = await axios.post(url + "/api/v1/products/add", formData, {
         headers: {

@@ -100,7 +100,6 @@
     z-index: 1001; /* Above overlay */
     max-width: 500px;
     width: 100%;
-    border: 2px solid red;
     padding-left: 20px;
 
     max-height: 80%; /* Limits the modal's height */
@@ -139,3 +138,12 @@
     border-radius: 5px;
     cursor: pointer;
 }
+/* .add-img-upload img{
+    width: 5rem;
+}
+
+.all-img{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+} */
