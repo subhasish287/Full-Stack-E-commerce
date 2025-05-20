@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ShopContextProvider = (props) => {
-  const currency = "$";
+  const currency = "₹";
   const delivery_fee = 10;
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [search, setSearch] = useState("");
@@ -70,7 +70,7 @@ const ShopContextProvider = (props) => {
             }
           );
           if(res.data.success === true){
-            toast.success(res.data.message+" bal");
+            toast.success(res.data.message);
           }
       } catch (error) {
         console.log(error);
