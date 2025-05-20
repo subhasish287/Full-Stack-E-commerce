@@ -81,7 +81,7 @@ function Products() {
             <img src={assets.star_dull_icon} alt="" className="w-3 5" />
             <p className="pl-2">(122)</p>
           </div>
-          <p className="mt-5 text-3xl font-medium">
+          <p className="mt-5 text-3xl font-medium text-green-700">
             {currency}
             {productData.price}
           </p>
