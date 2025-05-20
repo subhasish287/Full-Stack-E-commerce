@@ -48,7 +48,7 @@ function About() {
         />
         <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
           <p>
-            At ForeEver, we’re passionate about delivering exceptional products
+            At TimeLessThereads, we’re passionate about delivering exceptional products
             and services that meet the highest standards of quality and style.
             Our mission is to provide you with a unique and satisfying
             experience, whether you're exploring our latest collections or
@@ -103,7 +103,7 @@ function About() {
         <div className="border md:px-16 py-8 sm:py-15 sm:px-4 flex flex-col gap-5">
           <b>Quality Assurance:</b>
           <p className="text-gray-700">
-            At FOREVER, we are dedicated to maintaining the highest standards of
+            At TimeLessThereads, we are dedicated to maintaining the highest standards of
             quality in everything we do. Our rigorous quality assurance process
             ensures that every product meets our exacting criteria for
             excellence. From careful selection of materials to meticulous
@@ -119,7 +119,7 @@ function About() {
         <div className="border md:px-16 py-8 sm:py-15 sm:px-4 flex flex-col gap-5">
           <b>Convenience:</b>
           <p className="text-gray-700">
-            At ForeEver, we prioritize your convenience every step of the way.
+            At TimeLessThereads, we prioritize your convenience every step of the way.
             Our streamlined processes and user-friendly solutions are designed
             to make your experience as effortless and enjoyable as possible.
             Whether it’s easy online ordering, flexible delivery options, or
@@ -135,7 +135,7 @@ function About() {
         <div className="border md:px-16 py-8 sm:py-15 sm:px-4 flex flex-col gap-5">
           <b>Exceptional Customer service:</b>
           <p className="text-gray-700">
-            At ForeEver, we pride ourselves on delivering exceptional customer
+            At TimeLessThereads, we pride ourselves on delivering exceptional customer
             service that goes above and beyond your expectations. Our dedicated
             team is here to assist you with prompt and personalized support,
             ensuring that your needs are met with care and attention to detail.

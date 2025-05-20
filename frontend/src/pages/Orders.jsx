@@ -12,7 +12,7 @@ function Orders() {
       const response = await axios.get(backendUrl + "/api/v1/orders/user",{headers:{Authorization:`${token}`}});
       if (response.data.success === true) {
         setOrders(response.data.orders);
-        console.log(response.data.orders);
+        // console.log(response.data.orders);
         
       }
     } catch (error) {

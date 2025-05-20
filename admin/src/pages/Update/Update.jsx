@@ -12,7 +12,7 @@ const Update = ({ url, token, item, setUpdate, fetchList }) => {
   // const [image4, setImage4] = useState(null);
   const [sizes, setSizes] = useState(item.sizes);
   const [bestseller, setBestseller] = useState(item.bestseller);
-  console.log(item);
+  // console.log(item);
   const [data, setData] = useState({
 
     name: item.name,

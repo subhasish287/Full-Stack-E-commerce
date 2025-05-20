@@ -24,7 +24,7 @@ const Review = ({productId}) => {
     } else {
       // Handle form submission (e.g., send to API)
       try {
-        console.log(productId,rating,review,backendUrl);
+        // console.log(productId,rating,review,backendUrl);
         
         const response = await axios.post(backendUrl+"/api/v1/review/add", {productId,rating,comment:review},{headers:{Authorization:`${token}`}})
         if(response.data.success === true){
@@ -53,8 +53,8 @@ const Review = ({productId}) => {
           }
         });
         setShowAllReviews(reviewsCopy);
-        console.log(user);
-        console.log(reviewsCopy);
+        // console.log(user);
+        // console.log(reviewsCopy);
         
         }
     } catch (error) {

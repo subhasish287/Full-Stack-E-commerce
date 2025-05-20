@@ -199,7 +199,7 @@ const allOrders = async (req, res) => {
     try {
       const orders = await Order.find({ });
     
-    console.log(orders[0].products[0].size);
+    // console.log(orders[0].products[0].size);
     
       // Only send the response once
       if (!orders) {
