@@ -9,7 +9,7 @@ import reviewRouter from './routes/review.routes.js';
 import cors from 'cors';
 app.use(cors({
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        origin: ["http://localhost:5173","https://e-commerce-admin-rb1a.onrender.com","https://e-comfrontend-git-master-santu-roys-projects-ee0d7c21.vercel.app","https://e-comfrontend-dgr3xqaur-santu-roys-projects-ee0d7c21.vercel.app/","https://fullstack-e-commerce-1-0v8u.onrender.com","https://e-commerce-frontend-nqds.onrender.com","https://e-comfrontend.vercel.app","http://localhost:5174"],  // Or specify the origin like 'http://localhost:5173'
+        origin: ["http://localhost:5173","https://e-commerce-admin-rb1a.onrender.com","https://e-commerce-frontend-w0zs.onrender.com","http://localhost:5174"],  // Or specify the origin like 'http://localhost:5173'
         credentials: true  // Allow cookies or credentials to be sent            
 }));
 
